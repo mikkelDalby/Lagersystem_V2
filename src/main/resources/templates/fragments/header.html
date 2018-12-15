@@ -1,0 +1,7 @@
+<nav th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a href="/home" id="logo">Lagersystem</a>
+    <a href="/home">Produkter</a>
+    <span sec:authorize="isAuthenticated()" style="display: inline-block;" class="text-color right">
+        <a th:href="@{/logout}">Log ud</a>
+    </span>
+</nav>

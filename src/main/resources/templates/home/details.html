@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ballonkompagniet IVS</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <form action="/home/update" method="post" class="details">
+        <table class="form_table">
+            <tr>
+                <td><label for="p_number">Produkt nr: </label></td>
+                <td><input type="text" th:value="${product.p_number}" name="p_number" id="p_number" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="p_name">Navn: </label></td>
+                <td><input type="text" th:value="${product.p_name}" name="p_name" id="p_name"></td>
+            </tr>
+            <tr>
+                <td><label for="p_purchase_price">Indkøbs pris: </label></td>
+                <td><input type="text" th:value="${product.p_purchase_price}" name="p_purchase_price" id="p_purchase_price"></td>
+            </tr>
+            <tr>
+                <td><label for="p_sales_price">Salgs pris: </label></td>
+                <td><input type="text" th:value="${product.p_sales_price}" name="p_sales_price" id="p_sales_price"></td>
+            </tr>
+            <tr>
+                <td><label for="p_barcode">Stregkode: </label></td>
+                <td><input type="text" th:value="${product.p_barcode}" name="p_barcode" id="p_barcode"></td>
+            </tr>
+            <tr>
+                <td><label for="p_in_stock">Antal på lager: </label></td>
+                <td><input type="number" th:value="${product.p_in_stock}" name="p_in_stock" id="p_in_stock"></td>
+            </tr>
+            <tr>
+                <td><label for="p_description">Beskrivelse:</label> </td>
+                <td><input type="text" th:value="${product.p_description}" name="p_description" id="p_description"></td>
+            </tr>
+            <tr>
+                <td><a href="/home" class="btn">Tilbage</a></td>
+                <td><input type="submit" value="Opdater produkt" class="btn"></td>
+            </tr>
+            <tr>
+                <td><a th:href="${'/home/delete/' + product.p_number}" class="btn btn-del">Slet produkt</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ballonkompagniet IVS</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+    </head>
+    <body>
+    <script>
+        function showDetails(id) {
+            window.location="/home/"+id;
+        }
+        function editStock(number) {
+            var stock = prompt("Skriv nyt antal til: "+ number +"", "");
+            if (stock != null) {
+                window.location="/home/"+number+"/"+stock;
+            }
+        }
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td1, td2, td3, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td1 = tr[i].getElementsByTagName("td")[1];
+                td2 = tr[i].getElementsByTagName("td")[0];
+                td3 = tr[i].getElementsByTagName("td")[4];
+                if (td1 || td2 || td3) {
+                    if (td1.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+                        td2.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+                        td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function selectAllInInput(event) {
+            var key = event.keyCode;
+            var td1, td2;
+            var input = document.getElementById("myInput");
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById("myTable");
+            var tr = table.getElementsByTagName("tr");
+
+            if (key == 13) {
+                document.getElementById("myInput").select();
+
+                    for (i = 0; i < tr.length; i++) {
+                        td1 = tr[i].getElementsByTagName("td")[0];
+                        td2 = tr[i].getElementsByTagName("td")[4];
+                        if (td1 || td2) {
+                            if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                editStock(td1.innerHTML.toUpperCase());
+                                break;
+                            }
+                        }
+                    }
+
+            }
+        }
+    </script>
+    <div class="container">
+        <div th:replace="fragments/header :: header"></div>
+        <h1>Ballonkompagniet IVS</h1>
+        <div class="top">
+            <div th:if="${param.updated}" class="left">Produktet blev opdateret</div>
+            <div th:if="${param.created}" class="left">Der blev tilføjet et nyt produkt</div>
+            <div th:if="${param.deleted}" class="left">Produktet blev slettet</div>
+            <input type="text" id="myInput" onkeyup="myFunction()" onkeypress="selectAllInInput(event)" placeholder="Søg.."
+                   autofocus>
+            <a href="/home/create" class="btn">Opret nyt produkt</a>
+        </div>
+        <table id="myTable">
+            <tr>
+                <th>Produkt nr</th>
+                <th>Navn</th>
+                <th>Pris</th>
+                <th>Lager</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.p_number}" th:onclick="'javascript:showDetails(\'' + ${product.p_number}+'\');'"></td>
+                <td th:text="${product.p_name}" th:onclick="'javascript:showDetails(\'' + ${product.p_number}+'\');'"></td>
+                <td th:text="${#numbers.formatDecimal(product.p_sales_price, 0, 'POINT', 2, 'COMMA') + ',-'}" th:onclick="'javascript:showDetails(\'' + ${product.p_number}+'\');'"></td>
+                <td th:text="${product.p_in_stock + ' stk'}" th:onclick="'javascript:editStock(\''+${product.p_number}+'\');'"></td>
+                <td style="display: none" th:text="${product.p_barcode}"></td>
+            </tr>
+        </table>
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+    </body>
+</html>

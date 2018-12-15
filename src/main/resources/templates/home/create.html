@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ballonkompagniet IVS</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+    <form action="/home/create" method="post" class="details">
+        <table class="form_table">
+            <tr>
+                <td><label for="p_number">Produkt nr: </label></td>
+                <td><input type="text" name="p_number" id="p_number" autofocus></td>
+            </tr>
+            <tr>
+                <td><label for="p_name">Navn: </label></td>
+                <td><input type="text" name="p_name" id="p_name"></td>
+            </tr>
+            <tr>
+                <td><label for="p_purchase_price">Indkøbs pris: </label></td>
+                <td><input type="text" name="p_purchase_price" id="p_purchase_price"></td>
+            </tr>
+            <tr>
+                <td><label for="p_sales_price">Salgs pris: </label></td>
+                <td><input type="text" name="p_sales_price" id="p_sales_price"></td>
+            </tr>
+            <tr>
+                <td><label for="p_barcode">Stregkode: </label></td>
+                <td><input type="text" name="p_barcode" id="p_barcode"></td>
+            </tr>
+            <tr>
+                <td><label for="p_in_stock">Antal på lager: </label></td>
+                <td><input type="number" name="p_in_stock" id="p_in_stock"></td>
+            </tr>
+            <tr>
+                <td><label for="p_description">Beskrivelse:</label> </td>
+                <td><input type="text" name="p_description" id="p_description"></td>
+            </tr>
+            <tr>
+                <td><a href="/home" class="btn">Tilbage</a></td>
+                <td><input type="submit" value="Opret produkt" class="btn"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
