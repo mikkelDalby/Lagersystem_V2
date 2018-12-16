@@ -70,7 +70,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>'LagersystemApplication'</mainClass>
+                            <mainClass>dk.lagersystem.LagersystemApplication</mainClass>
 
                         </manifest>
                     </archive>
