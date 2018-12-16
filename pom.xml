@@ -71,6 +71,7 @@
                     <archive>
                         <manifest>
                             <mainClass>LagersystemApplication</mainClass>
+
                         </manifest>
                     </archive>
                 </configuration>
