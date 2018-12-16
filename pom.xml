@@ -71,6 +71,7 @@
                     <archive>
                         <manifest>
                             <mainClass>dk.lagersystem.LagersystemApplication</mainClass>
+
                         </manifest>
                     </archive>
                 </configuration>
