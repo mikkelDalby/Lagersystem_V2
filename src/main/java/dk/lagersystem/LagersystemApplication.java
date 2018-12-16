@@ -8,5 +8,6 @@ public class LagersystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LagersystemApplication.class, args);
+
     }
 }
