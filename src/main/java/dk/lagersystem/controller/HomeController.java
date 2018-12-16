@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-    // test
     @Autowired
     IProductRepository iProductRepository;
 
